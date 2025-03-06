@@ -1,9 +1,10 @@
+import Home from "./pages/Home"
 
 function App() {
 
   return (
     <>
-      <p className="bg-indigo-500">Hello</p>
+      <Home/>
     </>
   )
 }
