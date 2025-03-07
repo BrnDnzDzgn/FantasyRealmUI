@@ -124,10 +124,13 @@ function CarouselContent({
 function CarouselItem({
   className,
   id,
+  children,
+  radioOptions = [],
+  selectedOption,
+  onOptionChange,
   ...props
 }) {
   const { orientation } = useCarousel()
-  const [selectedOption, setSelectedOption] = React.useState("option1")
 
   return (
     <div
@@ -141,37 +144,31 @@ function CarouselItem({
       )}
       {...props}>
 
-        <p className="text-center mb-4">Carousel Item {id}</p>
+      <div className="p-4 bg-white shadow rounded">
+        {children}
+      </div>
 
-        <RadioGroup
-          value={selectedOption}
-          onValueChange={setSelectedOption}
-          className="flex justify-center space-x-4"
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option1" id={`option1-${id}`} />
-            <label htmlFor={`option1-${id}`} className="text-sm">Option 1</label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option2" id={`option2-${id}`} />
-            <label htmlFor={`option2-${id}`} className="text-sm">Option 2</label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option3" id={`option3-${id}`} />
-            <label htmlFor={`option3-${id}`} className="text-sm">Option 3</label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="option4" id={`option4-${id}`} />
-            <label htmlFor={`option4-${id}`} className="text-sm">Option 4</label>
-          </div>
-        </RadioGroup>
-
-        <p className="mt-2 text-center text-sm text-gray-500">
-          Selected: {selectedOption}
-        </p>
+      {radioOptions.length > 0 && (
+        <>
+          <RadioGroup
+            value={selectedOption}
+            onValueChange={onOptionChange}
+            className="mt-4 flex justify-center space-x-4"
+          >
+            {radioOptions.map((option) => (
+              <div key={option.value} className="flex items-center space-x-2">
+                <RadioGroupItem value={option.value} id={`${id}-${option.value}`} />
+                <label htmlFor={`${id}-${option.value}`} className="text-sm">
+                  {option.label}
+                </label>
+              </div>
+            ))}
+          </RadioGroup>
+          <p className="mt-2 text-center text-sm text-gray-500">
+            Selected: {selectedOption}
+          </p>
+        </>
+      )}
       </div>
   );
 }
