@@ -48,8 +48,8 @@ function Home() {
         <Vortex
             backgroundColor="black"
             rangeY={800}
-            particleCount={500}
-            baseHue={120}
+            particleCount={1500}
+            baseHue={300}
             className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
         >
             <div className="p-10 bg-white shadow-md rounded-lg max-w-[800px] w-full">
