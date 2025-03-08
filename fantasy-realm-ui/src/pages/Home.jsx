@@ -17,6 +17,7 @@ import {
 import { Button } from "../components/ui/button";
 import { useForm } from "react-hook-form"
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group"
+import { Vortex } from "../components/ui/vortex";
 
 function Home() {
 
@@ -43,6 +44,14 @@ function Home() {
 
     return (
         <div className="h-screen w-screen flex justify-center items-center bg-gray-100">
+
+        <Vortex
+            backgroundColor="black"
+            rangeY={800}
+            particleCount={500}
+            baseHue={120}
+            className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
+        >
             <div className="p-10 bg-white shadow-md rounded-lg max-w-[800px] w-full">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-20">
@@ -84,6 +93,9 @@ function Home() {
                     </form>
                 </Form>
             </div>
+        </Vortex>
+
+
         </div>
     )
 }
