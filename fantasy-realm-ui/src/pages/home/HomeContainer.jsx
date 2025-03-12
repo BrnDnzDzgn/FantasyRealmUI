@@ -1,14 +1,18 @@
 import Home from "./Home"
 import { Vortex } from "../../components/ui/vortex"
+import { LampContainer } from "../../components/ui/lamp";
+import React from "react";
+import { motion } from "motion/react";
 
 function HomeContainer() {
     const backgrounds = [
         (props) => <Vortex {...props} rangeY={800} particleCount={1500} baseHue={300} />,
         (props) => <Vortex {...props} rangeY={600} particleCount={1000} baseHue={900} />,
+        (props) => <LampContainer {...props} />,
         (props) => <Vortex {...props} rangeY={900} particleCount={1000} baseHue={100} />,
     ];
 
-    const lastIndex = parseInt(localStorage.getItem("backgroundIndex")) || 0; // Get last used index from localStorage
+    const lastIndex = parseInt(localStorage.getItem("backgroundIndex") | 0); // Get last used index from localStorage
     const nextIndex = (lastIndex + 1) % backgrounds.length; // Calculate next index (looping when reaching the end)
     localStorage.setItem("backgroundIndex", nextIndex); // Store new index in localStorage
     const SelectedBackground = backgrounds[nextIndex]; // Select the background component based on the index
