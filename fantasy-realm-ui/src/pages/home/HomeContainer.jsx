@@ -1,27 +1,21 @@
 import Home from "./Home"
+import { useState } from "react";
 import { Vortex } from "../../components/ui/vortex"
-import { LampContainer } from "../../components/ui/lamp";
 import React from "react";
-import { motion } from "motion/react";
+import { getRandomVortexProps } from "../../utils/getRandomVortexProps";
 
 function HomeContainer() {
-    const backgrounds = [
-        (props) => <Vortex {...props} rangeY={800} particleCount={1500} baseHue={300} />,
-        (props) => <Vortex {...props} rangeY={600} particleCount={1000} baseHue={900} />,
-        (props) => <LampContainer {...props} />,
-        (props) => <Vortex {...props} rangeY={900} particleCount={1000} baseHue={100} />,
-    ];
+    const [vortexProps, setVortexProps] = useState(() => getRandomVortexProps());
 
-    const lastIndex = parseInt(localStorage.getItem("backgroundIndex") | 0); // Get last used index from localStorage
-    const nextIndex = (lastIndex + 1) % backgrounds.length; // Calculate next index (looping when reaching the end)
-    localStorage.setItem("backgroundIndex", nextIndex); // Store new index in localStorage
-    const SelectedBackground = backgrounds[nextIndex]; // Select the background component based on the index
+    function handleRandomizeBackground() {
+        setVortexProps(getRandomVortexProps());
+    }
 
     return (
         <div className="h-screen w-screen flex justify-center items-center bg-gray-100">
-            <SelectedBackground className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full">
-                <Home />
-            </SelectedBackground>
+            <Vortex {...vortexProps} className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full">
+                <Home onCarouselNav={handleRandomizeBackground} />
+            </Vortex>
         </div>
     );
 }

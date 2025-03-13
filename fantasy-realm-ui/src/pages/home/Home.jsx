@@ -43,9 +43,6 @@ function Home() {
     ];
 
     return (
-        
-
-
             <div className="p-10 bg-white shadow-md rounded-lg max-w-[800px] w-full">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-20">
@@ -82,7 +79,6 @@ function Home() {
                             <CarouselPrevious />
                             <CarouselNext />
                         </Carousel>
-    
                         <Button type="submit">Start Adventure</Button>
                     </form>
                 </Form>
