@@ -1,12 +1,13 @@
-import Results from "./Results"
+
+import Results from "./Results";
+import { LampContainer } from "../../components/ui/lamp";
 
 function ResultsContainer() {
-
     return (
-        <>
-            <Results/>
-        </>
-    )
+        <LampContainer className="h-screen w-screen flex items-center justify-center relative">
+            <Results />
+        </LampContainer>
+    );
 }
 
-export default ResultsContainer
+export default ResultsContainer;

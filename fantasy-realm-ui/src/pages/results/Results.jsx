@@ -1,11 +1,11 @@
 
 function Results() {
-
     return (
-        <>
-            <p>Results are displayed here! In this page!</p>
-        </>
-    )
-}
+      <div className="p-10 bg-white shadow-md rounded-lg max-w-[800px] w-full">
+        <h1>Results</h1>
+        
+      </div>
+    );
+  }
 
-export default Results
+  export default Results;
