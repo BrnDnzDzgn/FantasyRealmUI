@@ -9,8 +9,10 @@ function App() {
   return (
     <Router>
       <SidebarProvider>
-        <div className="flex min-h-screen">
-          <AppSidebar />
+        <div className="relative flex min-h-screen overflow-x-hidden">
+          <div className="fixed inset-y-0 left-0 z-50">
+            <AppSidebar />
+          </div>
           <div className="flex-1">
             <Routes>
               <Route path="/" element={<HomeContainer />} />

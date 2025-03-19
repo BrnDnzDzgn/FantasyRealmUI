@@ -14,18 +14,18 @@ import {
 // Menu items.
 const items = [
     {
-    title: "Home",
-    url: "#",
-    icon: Home,
+        title: "Home",
+        url: "/",
+        icon: Home,
     },
     {
-        title: "Inbox",
-        url: "#",
+        title: "Quiz",
+        url: "/quiz",
         icon: Inbox,
     },
     {
-        title: "Calendar",
-        url: "#",
+        title: "Results",
+        url: "/results",
         icon: Calendar,
     },
     {
