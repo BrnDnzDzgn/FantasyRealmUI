@@ -8,7 +8,7 @@ import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 function App() {
   return (
     <Router>
-      <SidebarProvider>
+      <SidebarProvider defaultOpen={false}>
         <div className="relative flex min-h-screen overflow-x-hidden">
           <div className="fixed inset-y-0 left-0 z-50">
             <AppSidebar />
