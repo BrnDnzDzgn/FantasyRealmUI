@@ -3,22 +3,19 @@ import React from "react";
 import { Icon } from "./icon";
 import { AnimatePresence, motion } from "motion/react";
 
-const Card = ({
-  title,
-  icon,
-  children,
-  className
-}) => {
+const Card = ({ title, icon, children, className, bgImage }) => {
   const [hovered, setHovered] = React.useState(false);
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`border border-black/[0.2] group/canvas-card flex items-center justify-center
-        ${className}
-        dark:border-white/[0.2]
-        min-w-[20rem] p-20 relative h-96 sm:h-[30rem] md:h-[35rem] lg:h-[45rem]`}
+      className={`border border-black/[2] group/canvas-card flex items-center justify-center dark:border-white/[0.2] min-w-[20rem] p-20 relative h-96 sm:h-[30rem] md:h-[35rem] lg:h-[45rem] ${className}`}
+      style={{
+        backgroundImage: bgImage ? `url(${bgImage})` : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       {/* Corner Icons */}
       <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />

@@ -65,6 +65,7 @@ html, body {
   margin: 0;
   padding: 0;
   display: flex;
+  background: #000;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
