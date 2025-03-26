@@ -4,7 +4,7 @@ export function getRandomVortexProps() {
 
     return {
     rangeY: randomIntInRange(400, 1500),
-    particleCount: randomIntInRange(1500, 2000),
+    particleCount: randomIntInRange(3000, 5000),
     baseHue: randomIntInRange(0, 1500),
     };
 }

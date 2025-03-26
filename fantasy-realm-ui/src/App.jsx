@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import QuizContainer from "./pages/quiz/QuizContainer";
 import ResultsContainer from "./pages/results/ResultsContainer";
 import HomeContainer from "./pages/home/HomeContainer";
+import PersonalityContainer from "./pages/personality/PersonalityContainer";
 import { AppSidebar } from "./components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<HomeContainer />} />
               <Route path="/quiz" element={<QuizContainer />} />
               <Route path="/results" element={<ResultsContainer />} />
+              <Route path="/personality" element={<PersonalityContainer />} />
             </Routes>
             <div className="fixed bottom-4 left-4 z-50">
                 <SidebarTrigger />

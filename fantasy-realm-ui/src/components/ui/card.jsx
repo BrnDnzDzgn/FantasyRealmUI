@@ -10,7 +10,9 @@ const Card = ({ title, icon, children, className, bgImage }) => {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`border border-black/[2] group/canvas-card flex items-center justify-center dark:border-white/[0.2] min-w-[20rem] p-20 relative h-96 sm:h-[30rem] md:h-[35rem] lg:h-[45rem] ${className}`}
+      className={`border border-black/[2] group/canvas-card flex items-center justify-center dark:border-white/[2] min-w-[20rem] p-20 relative h-96 sm:h-[30rem] md:h-[35rem] lg:h-[45rem] transform transition-transform duration-300 ${
+        hovered ? "scale-110" : "scale-100"
+      } ${className}`}
       style={{
         backgroundImage: bgImage ? `url(${bgImage})` : "none",
         backgroundSize: "cover",
