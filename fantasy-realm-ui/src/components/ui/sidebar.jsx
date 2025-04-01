@@ -6,7 +6,6 @@ import { PanelLeftIcon } from "lucide-react"
 import { useIsMobile } from "../../hooks/use-mobile"
 import { cn } from "../../utils/utils"
 import { Button } from "./button"
-import { Input } from "./input"
 import { Separator } from "./separator"
 import {
   Sheet,
@@ -278,19 +277,6 @@ function SidebarInset({
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         className
       )}
-      {...props} />
-  );
-}
-
-function SidebarInput({
-  className,
-  ...props
-}) {
-  return (
-    <Input
-      data-slot="sidebar-input"
-      data-sidebar="input"
-      className={cn("bg-background h-8 w-full shadow-none", className)}
       {...props} />
   );
 }
@@ -656,7 +642,6 @@ export {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarInput,
   SidebarInset,
   SidebarMenu,
   SidebarMenuAction,

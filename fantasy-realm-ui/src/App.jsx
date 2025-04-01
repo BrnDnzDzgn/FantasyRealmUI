@@ -5,6 +5,7 @@ import HomeContainer from "./pages/home/HomeContainer";
 import PersonalityContainer from "./pages/personality/PersonalityContainer";
 import { AppSidebar } from "./components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
+import { Login } from "./pages/login/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/quiz" element={<QuizContainer />} />
               <Route path="/results" element={<ResultsContainer />} />
               <Route path="/personality" element={<PersonalityContainer />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
             <div className="fixed bottom-4 left-4 z-50">
                 <SidebarTrigger />

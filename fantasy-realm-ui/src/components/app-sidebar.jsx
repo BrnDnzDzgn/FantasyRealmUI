@@ -30,7 +30,7 @@ const items = [
     },
     {
         title: "Signup/Login",
-        url: "#",
+        url: "/login",
         icon: LogIn,
     },
     {

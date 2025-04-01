@@ -3,7 +3,6 @@ import { Slot } from "@radix-ui/react-slot"
 import { Controller, FormProvider, useFormContext, useFormState } from "react-hook-form";
 
 import { cn } from "../../utils/utils"
-import { Label } from "./label"
 
 const Form = FormProvider
 
@@ -56,22 +55,6 @@ function FormItem({
     <FormItemContext.Provider value={{ id }}>
       <div data-slot="form-item" className={cn("grid gap-2", className)} {...props} />
     </FormItemContext.Provider>
-  );
-}
-
-function FormLabel({
-  className,
-  ...props
-}) {
-  const { error, formItemId } = useFormField()
-
-  return (
-    <Label
-      data-slot="form-label"
-      data-error={!!error}
-      className={cn("data-[error=true]:text-destructive-foreground", className)}
-      htmlFor={formItemId}
-      {...props} />
   );
 }
 
@@ -135,7 +118,6 @@ export {
   useFormField,
   Form,
   FormItem,
-  FormLabel,
   FormControl,
   FormDescription,
   FormMessage,
