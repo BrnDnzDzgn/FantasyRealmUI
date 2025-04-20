@@ -20,7 +20,7 @@ function App() {
               <Route path="/" element={<HomeContainer />} />
               <Route path="/quiz" element={<QuizContainer />} />
               <Route path="/results" element={<ResultsContainer />} />
-              <Route path="/personality" element={<PersonalityContainer />} />
+              <Route path="/personality/:id" element={<PersonalityContainer />} />
               <Route path="/login" element={<Login />} />
             </Routes>
             <div className="fixed bottom-4 left-4 z-50">
