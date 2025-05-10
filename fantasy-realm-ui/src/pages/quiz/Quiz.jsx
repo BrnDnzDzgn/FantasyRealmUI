@@ -20,6 +20,7 @@ import {
     const [questionChoicesMap, setQuestionChoicesMap] = useState({});
   
     const form = useForm({
+      mode: "onChange",
       defaultValues: {
         selections: {},
       },
@@ -65,8 +66,10 @@ import {
     }, []);
   
     function onSubmit(values) {
-      console.log("Form submitted with:", values);
-      navigate("/results");
+      if (form.formState.isValid) {
+        console.log("Form submitted with:", values);
+        navigate("/results");
+      }
     }
   
     return (
@@ -117,7 +120,7 @@ import {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-            <Button type="submit">Start Adventure</Button>
+            <Button type="submit" disabled={!form.formState.isValid}>Start Adventure</Button>
           </form>
         </Form>
       </div>
