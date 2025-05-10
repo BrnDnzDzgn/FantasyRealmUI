@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Label } from "../../components/ui/aceternityLabel";
 import { Input } from "../../components/ui/aceternityInput";
 import { cn } from "../../utils/utils";
@@ -10,10 +11,12 @@ IconBrandOnlyfans,
 } from "@tabler/icons-react";
 
 export function Login() {
+const navigate = useNavigate();
 const [isLogin, setIsLogin] = React.useState(false);
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted");
+    navigate("/profile");
 };
 return (
     <div className="flex items-center justify-center min-h-screen w-screen bg-black dark:bg-black">

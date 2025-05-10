@@ -24,11 +24,6 @@ const items = [
         icon: ShieldQuestion,
     },
     {
-        title: "Results",
-        url: "/results",
-        icon: Ship,
-    },
-    {
         title: "Signup/Login",
         url: "/login",
         icon: LogIn,

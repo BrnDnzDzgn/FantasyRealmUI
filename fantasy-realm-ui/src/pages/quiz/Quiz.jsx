@@ -13,6 +13,7 @@ import {
   import { useForm } from "react-hook-form"
   import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
   import { useEffect, useState } from "react";
+  import { useNavigate } from "react-router-dom";
   
   function Quiz() {
     const [questions, setQuestions] = useState([]);
@@ -23,6 +24,8 @@ import {
         selections: {},
       },
     });
+
+    const navigate = useNavigate();
   
     useEffect(() => {
       const fetchData = async () => {
@@ -63,6 +66,7 @@ import {
   
     function onSubmit(values) {
       console.log("Form submitted with:", values);
+      navigate("/results");
     }
   
     return (
@@ -121,4 +125,3 @@ import {
   }
   
   export default Quiz;
-  
