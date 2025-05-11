@@ -7,6 +7,7 @@ import { AppSidebar } from "./components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import ProfileContainer from "./pages/profile/ProfileContainer";
 import LoginContainer from "./pages/login/LoginContainer";
+import AdminPanelContainer from "./pages/adminPanel/AdminPanelContainer";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
               <Route path="/results" element={<ResultsContainer />} />
               <Route path="/personality/:id" element={<PersonalityContainer />} />
               <Route path="/login" element={<LoginContainer/>} />
-              <Route path="/profile" element={<ProfileContainer />} />
+              <Route path="/profile" element={<ProfileContainer />} />              
+              <Route path="/adminPanel/*" element={<AdminPanelContainer />} />
             </Routes>
             <div className="fixed bottom-4 left-4 z-50">
                 <SidebarTrigger />

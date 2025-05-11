@@ -4,20 +4,40 @@ import { useNavigate } from "react-router-dom";
 import { Label } from "../../components/ui/aceternityLabel";
 import { Input } from "../../components/ui/aceternityInput";
 import { cn } from "../../utils/utils";
-import {
-IconBrandGithub,
-IconBrandGoogle,
-IconBrandOnlyfans,
-} from "@tabler/icons-react";
 
 export function Login() {
 const navigate = useNavigate();
 const [isLogin, setIsLogin] = React.useState(false);
-const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
-    navigate("/profile");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const username = e.target.username.value;
+  const password = e.target.password.value;
+
+  try {
+    const res = await fetch("https://localhost:7244/api/FantasyUserAccessToken", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userName: username, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Login failed.");
+      return;
+    }
+
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+    localStorage.setItem("role", data.role);
+
+    navigate(data.role === "admin" ? "/adminPanel" : "/profile");
+  } catch (err) {
+    alert("An error occurred during login.");
+  }
 };
+
 return (
     <div className="flex items-center justify-center min-h-screen w-screen bg-black dark:bg-black">
         <div className="shadow-input w-full max-w-md rounded-2xl bg-white p-4 md:p-8 dark:bg-zinc-900">
@@ -38,15 +58,19 @@ return (
                         <Label htmlFor="lastname">Last name</Label>
                         <Input id="lastname" placeholder="Durden" type="text" />
                     </LabelInputContainer>
+                    <LabelInputContainer className="mb-4">
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+                    </LabelInputContainer>
                 </div>
                 )}
                 <LabelInputContainer className="mb-4">
-                <Label htmlFor="email">Email Address</Label>
-                <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+                    <Label htmlFor="username">Username</Label>
+                    <Input id="username" placeholder="tyler_durden" type="text" />
                 </LabelInputContainer>
                 <LabelInputContainer className="mb-4">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" placeholder="••••••••" type="password" />
+                    <Label htmlFor="password">Password</Label>
+                    <Input id="password" placeholder="••••••••" type="password" />
                 </LabelInputContainer>
 
                 <button

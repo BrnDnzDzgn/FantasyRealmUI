@@ -65,13 +65,51 @@ import {
       fetchData();
     }, []);
   
-    function onSubmit(values) {
-      if (form.formState.isValid) {
-        console.log("Form submitted with:", values);
-        navigate("/results");
-      }
+  function onSubmit(values) {
+    if (!form.formState.isValid) {
+      alert("Please answer all questions before proceeding.");
+      return;
     }
-  
+
+    const selections = values.selections;
+
+    const questionChoiceIds = Object.entries(selections).map(([key, selectedValue], questionIndex) => {
+      const questionId = questions[questionIndex]?.id;
+      const options = questionChoicesMap[questionId];
+      const selectedIndex = options.findIndex(option => option === selectedValue);
+
+      if (selectedIndex === -1) return undefined;
+
+      return questionIndex * 4 + selectedIndex + 1;
+    });
+
+    if (questionChoiceIds.includes(undefined)) {
+      alert("Some selected answers could not be matched to manual IDs.");
+      return;
+    }
+
+    const payload = {
+      userId: "4", // hardcoded for now
+      questionChoiceIds
+    };
+
+    fetch("https://localhost:7219/api/FantasyUserPersonalityAssociation/calculate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("✅ Result:", data);
+        navigate("/results", { state: { personalityResult: data } });
+      })
+      .catch(err => {
+        console.error("❌ POST error:", err);
+      });
+  }
+
+
+
     return (
       <div className="p-10 bg-white shadow-md rounded-lg max-w-[800px] w-full">
         <Form {...form}>
@@ -89,6 +127,7 @@ import {
                       <FormField
                         control={form.control}
                         name={`selections.${itemId}`}
+                        rules={{ required: true }}
                         render={({ field }) => (
                           <RadioGroup
                             value={field.value}
@@ -117,10 +156,18 @@ import {
                   );
                 })}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <div>
+                <CarouselPrevious />
+                <CarouselNext />
+              </div>
             </Carousel>
-            <Button type="submit" disabled={!form.formState.isValid}>Start Adventure</Button>
+
+            <div className="flex justify-center mt-10">
+              <Button type="submit" className="bg-black text-black px-6 py-3 rounded" disabled={!form.formState.isValid}>
+                Start Adventure
+              </Button>
+            </div>
+
           </form>
         </Form>
       </div>

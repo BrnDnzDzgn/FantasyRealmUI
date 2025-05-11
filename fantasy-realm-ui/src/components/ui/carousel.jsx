@@ -184,6 +184,7 @@ function CarouselPrevious({
   return (
     <Button
       data-slot="carousel-previous"
+      type="button"
       variant={variant}
       size={size}
       className={cn("absolute size-8 rounded-full", orientation === "horizontal"
@@ -209,6 +210,7 @@ function CarouselNext({
   return (
     <Button
       data-slot="carousel-next"
+      type="button"
       variant={variant}
       size={size}
       className={cn("absolute size-8 rounded-full", orientation === "horizontal"
